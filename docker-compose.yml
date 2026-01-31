@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  altay:
+    build: .
+    container_name: altay
+    ports:
+      - "5000:5000"
+    environment:
+      - LOG_BASE=/var/log
+      - RULES_PATH=/app/config/rules.yaml
+      - RULES_PATH_JSON=/app/config/rules.json
+      - REPORTS_DIR=/app/reports
+    volumes:
+      # Gerçek logları bağlamak için 
+      - ./logs:/var/log:ro
+      # Kuralları düzenleyebilmek için
+      - ./config:/app/config:ro
+      # Raporları dışarı almak için
+      - ./reports:/app/reports
+    restart: unless-stopped

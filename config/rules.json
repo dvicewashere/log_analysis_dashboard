@@ -1,0 +1,34 @@
+{
+  "rules": [
+    {
+      "id": "failed-password",
+      "name": "Başarısız SSH şifre denemesi",
+      "description": "Failed password girişimi tespit edildi",
+      "enabled": true,
+      "severity": "high",
+      "sources": ["auth"],
+      "pattern_type": "substring",
+      "patterns": ["Failed password", "failed password"]
+    },
+    {
+      "id": "error-keyword",
+      "name": "Error anahtar kelimesi",
+      "description": "Log satırında error geçiyor",
+      "enabled": true,
+      "severity": "medium",
+      "sources": [],
+      "pattern_type": "substring",
+      "patterns": ["error", "Error", "ERROR"]
+    },
+    {
+      "id": "ssh-keyword",
+      "name": "SSH ile ilgili log",
+      "description": "SSH/sshd ile ilgili kayıt",
+      "enabled": true,
+      "severity": "low",
+      "sources": ["auth", "syslog"],
+      "pattern_type": "substring",
+      "patterns": ["sshd", "ssh"]
+    }
+  ]
+}

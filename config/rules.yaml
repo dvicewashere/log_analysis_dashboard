@@ -1,0 +1,92 @@
+# kurallar - sources: auth, syslog, nginx_access, ufw için geçerlidir. //Dvice was here!
+rules:
+  - id: failed-password
+    name: Başarısız SSH şifre denemesi
+    description: Hatalı şifre girişimi tespit edildi
+    enabled: true
+    severity: high
+    sources: [auth]
+    pattern_type: substring
+    patterns:
+      - "Failed password"
+      - "failed password"
+
+  - id: invalid-user
+    name: Geçersiz kullanıcı ile giriş denemesi
+    description: Geçersiz kullanıcı ile SSH denemesi
+    enabled: true
+    severity: high
+    sources: [auth]
+    pattern_type: substring
+    patterns:
+      - "invalid user"
+      - "Invalid user"
+
+  - id: ssh-accepted
+    name: SSH oturum açıldı
+    description: Başarılı SSH girişi
+    enabled: true
+    severity: low
+    sources: [auth]
+    pattern_type: substring
+    patterns:
+      - "Accepted password"
+      - "Accepted publickey"
+
+  - id: error-keyword
+    name: Error anahtar kelimesi
+    description: Log satırında 'error' geçiyor
+    enabled: true
+    severity: medium
+    sources: []
+    pattern_type: substring
+    patterns:
+      - "error"
+      - "Error"
+      - "ERROR"
+
+  - id: ssh-keyword
+    name: SSH ile ilgili log
+    description: SSH/sshd ile ilgili kayıt
+    enabled: true
+    severity: low
+    sources: [auth, syslog]
+    pattern_type: substring
+    patterns:
+      - "sshd"
+      - "ssh"
+
+  - id: ufw-block
+    name: UFW engelleme
+    description: Güvenlik duvarı paket engelledi
+    enabled: true
+    severity: medium
+    sources: [ufw]
+    pattern_type: substring
+    patterns:
+      - "UFW BLOCK"
+      - "BLOCK"
+
+  - id: nginx-4xx
+    name: Nginx istemci hataları (4xx)
+    description: 4xx HTTP yanıtı
+    enabled: true
+    severity: low
+    sources: [nginx_access]
+    pattern_type: regex
+    patterns:
+      - '" (4\\d{2}) '
+
+  - id: nginx-5xx
+    name: Nginx sunucu hataları (5xx)
+    description: 5xx HTTP yanıtı
+    enabled: true
+    severity: medium
+    sources: [nginx_access]
+    pattern_type: regex
+    patterns:
+      - '" (5\\d{2}) '
+
+
+      
+#Dvice was here!

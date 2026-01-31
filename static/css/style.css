@@ -1,0 +1,342 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  --bg: #1a1c1e;
+  --surface: #25282c;
+  --border: #3a3e42;
+  --text: #e4e6e8;
+  --text-muted: #8a8e92;
+  --accent: #5a9fd4;
+  --accent-hover: #4a8fc4;
+  --shadow: rgba(0,0,0,0.2);
+  --ok: #4caf50;
+  --err: #d32f2f;
+  --warn: #f0ad4e;
+  background: var(--bg);
+  color: var(--text);
+  position: relative;
+  min-height: 100vh;
+}
+
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 32px 48px;
+  position: relative;
+  z-index: 2;
+}
+
+/* header */
+header {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  margin: 0 0 6px 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+header p.header-sub {
+  margin: 0 0 24px 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.socket-status {
+  margin-left: 6px;
+  font-size: 10px;
+  vertical-align: middle;
+}
+
+.socket-status.connected {
+  color: var(--ok);
+}
+
+.socket-status.disconnected {
+  color: var(--err);
+}
+
+.menu { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.tab {
+  padding: 12px 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 8px;
+  color: var(--text);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.tab:hover {
+  border-color: var(--text-muted);
+  background: var(--border);
+}
+
+.tab.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* panels */
+.panel { display: none; }
+.panel.active {
+  display: block;
+  padding-top: 8px;
+  min-height: 420px;
+}
+
+.panel h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: var(--text);
+}
+
+.panel h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 28px 0 12px 0;
+  color: var(--text-muted);
+}
+
+.not {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* form */
+.form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.form label {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.form select,
+.form input[type="number"] {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.form select:focus,
+.form input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form a,
+.form button {
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.15s;
+}
+
+.form a:hover,
+.form button:hover {
+  background: var(--accent-hover);
+}
+
+main button:not(.tab) {
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+main button:not(.tab):hover {
+  background: var(--accent-hover);
+}
+
+/* box / summary */
+.box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-family: Consolas, "Courier New", monospace;
+  line-height: 1.5;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* log source cards */
+#log-sources { display: flex; flex-wrap: wrap; gap: 20px; }
+
+.kart {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  min-width: 260px;
+  flex: 1 1 260px;
+  max-width: 320px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.kart h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.kart .yol {
+  font-size: 13px;
+  color: var(--text-muted);
+  word-break: break-all;
+  line-height: 1.45;
+}
+
+.kart .durum {
+  font-size: 13px;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.durum.ok { color: var(--ok); }
+.durum.yok { color: var(--err); }
+
+/* alerts & rules lists */
+#alerts-list,
+#rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alert-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 14px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.alert-item.high,
+.alert-item.critical { border-left-color: var(--err); }
+
+.alert-item.medium { border-left-color: var(--warn); }
+
+.alert-item .log-raw {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  word-break: break-all;
+  line-height: 1.45;
+}
+
+.rule-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 14px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.rule-item .name { font-weight: 600; color: var(--text); font-size: 15px; }
+
+.rule-item .meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+/* sample log / pre */
+#analyze-sample-content,
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 13px;
+  max-height: 360px;
+  overflow: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: var(--text);
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+details summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+/* reports list */
+#reports-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#reports-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+#reports-list li:last-child { border-bottom: none; }
+
+/* footer */
+footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+footer a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--accent);
+}

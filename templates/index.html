@@ -1,0 +1,101 @@
+<!DOCTYPE html> //Sibervatan{Dvice_was_here}
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Altay - Log Analiz</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/stars.css">
+</head>
+<body>
+  <div class="stars-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </div>
+  <div class="wrapper"> 
+    <header>
+      <h1>Altay</h1>
+      <p class="header-sub">log analiz <span id="socket-status" class="socket-status disconnected" title="Bağlantı yok">●</span></p>
+      <div class="menu">
+        <button type="button" class="tab active" data-tab="overview">Özet</button>
+        <button type="button" class="tab" data-tab="analyze">Analiz</button>
+        <button type="button" class="tab" data-tab="alerts">Uyarılar</button>
+        <button type="button" class="tab" data-tab="rules">Kurallar</button>
+        <button type="button" class="tab" data-tab="export">CSV indir</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="overview" class="panel active">
+        <h2>Log kaynakları</h2>
+        <p class="not">Özet: Log dosyalarının içeriği okunur, gereksiz ifadeler parse edilir ve kurallara göre anlamlı uyarılar üretilir.</p>
+        <div id="log-sources"></div>
+        <p class="not">Analiz sekmesinden kaynak seçip analiz edebilirsin.</p>
+      </section>
+
+      <section id="analyze" class="panel">
+        <h2>Dosya analizi ve özet</h2>
+        <p class="not">Log içeriği okunur, parse edilir; gereksiz kısımlar ayıklanıp kurallarla eşleşen satırlardan anlamlı uyarılar üretilir.</p>
+        <div class="form">
+          <label>Kaynak</label>
+          <select id="analyze-source">
+            <option value="auth">auth.log</option>
+            <option value="syslog">syslog</option>
+            <option value="nginx_access">nginx access.log</option>
+            <option value="ufw">ufw.log</option>
+          </select>
+          <button type="button" id="btn-analyze">Analiz et</button>
+        </div>
+        <div id="analyze-summary" class="box"></div>
+        <div id="analyze-alerts"></div>
+        <details>
+          <summary>Örnek satırlar</summary>
+          <pre id="analyze-sample-content"></pre>
+        </details>
+      </section>
+
+      <section id="alerts" class="panel">
+        <h2>Gerçek zamanlı izleme (tailing)</h2>
+        <p class="not">Log dosyaları sürekli okunuyor, yeni satırlar kurallardan geçirilip anlık uyarı üretilir.</p>
+        <button type="button" id="btn-refresh-alerts">Yenile</button>
+        <div id="alerts-list"></div>
+      </section>
+
+      <section id="rules" class="panel">
+        <h2>Kurallar</h2>
+        <p class="not">config/rules.yaml veya rules.json dosyasından yüklenir.</p>
+        <div id="rules-list"></div>
+      </section>
+
+      <section id="export" class="panel">
+        <h2>CSV dışa aktar</h2>
+        <div class="form">
+          <label>Kaynak</label>
+          <select id="export-source">
+            <option value="auth">auth.log</option>
+            <option value="syslog">syslog</option>
+            <option value="nginx_access">nginx access.log</option>
+            <option value="ufw">ufw.log</option>
+          </select>
+          <label>Max satır</label>
+          <input type="number" id="export-max" value="5000">
+          <a id="btn-export" href="#">CSV indir</a>
+        </div>
+        <div id="export-status"></div>
+        <h3>Son raporlar</h3>
+        <ul id="reports-list"></ul>
+      </section>
+    </main>
+
+<footer>
+  <a href="https://dvice.harunseker.com/" target="_blank">Dvice ♥</a>
+</footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

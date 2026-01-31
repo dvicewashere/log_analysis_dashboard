@@ -1,0 +1,16 @@
+Jan 31 10:00:01 hostname systemd: Starting system activity accounting...
+Jan 31 10:00:02 hostname kernel: [ 123.456] Some kernel message
+Jan 31 10:15:30 hostname sshd[1234]: Connection from 192.168.1.100 port 22 on 10.0.0.1 port 22
+Jan 31 10:15:32 hostname sshd[1234]: Failed password for invalid user root from 192.168.1.100 port 22 ssh2
+Jan 31 10:16:00 hostname cron: (root) CMD (/usr/bin/script)
+Jan 31 10:20:00 hostname systemd: Stopping user service...
+Jan 31 11:00:15 web-sunucu uygulama: Veritabanı bağlantısı başarıyla kuruldu
+Jan 31 11:02:33 web-sunucu uygulama: Kullanıcı oturumu sonlandırıldı - kullanici_id=4421
+Jan 31 11:05:00 web-sunucu yedekleme: Yedekleme işlemi tamamlandı - /var/yedek/2026-01-31
+Jan 31 11:10:22 web-sunucu uygulama: Hata: Disk alanı yetersiz - kalan 120 MB
+Jan 31 11:15:00 guvenlik-duvari firewall: Güvenlik duvarı kuralı güncellendi - kural_id=7
+Jan 31 11:20:45 api-gateway uygulama: API isteği reddedildi - yetkisiz erişim denemesi
+Jan 31 11:25:00 web-sunucu guncelleme: Sistem güncellemesi başlatıldı - paket sayısı: 12
+Jan 31 11:30:11 auth-servis uygulama: Oturum açma denemesi başarısız - IP: 10.0.0.55
+Jan 31 11:35:00 web-sunucu cron: (www-data) Çalıştırıldı: /usr/bin/rapor_olustur gunluk
+Jan 31 11:40:00 veritabani-srv uygulama: Yavaş sorgu tespit edildi - sure: 4.2s - tablo: kullanicilar
