@@ -1,6 +1,9 @@
 # Altay - Log Analiz
 
-SOC projesi. Log dosyalarını okuyup analiz eder, kurallara göre uyarı üretir.
+
+SOC projesi. Log dosyalarını okuyup analiz eder, kurallara göre uyarı üretir
+
+Projenin web tabanlı olma sebebi herkes için daha anlaşılır olması istenildiğinden yapılmıştır.
 
 ## Özellikler
 
@@ -48,3 +51,4 @@ config/rules.yaml veya rules.json da:
 - **static/**, **templates/** – web arayüzü (CSS, JS, HTML)
 - **logs/** – örnek loglar (docker-compose ile ./logs → /var/log mount)
 - **reports/** – CSV rapor çıktıları
+
